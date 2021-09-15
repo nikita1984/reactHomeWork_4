@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+
+  h3: {
+    textAlign: "center",
+  },
 }));
 
 function Chat() {
@@ -52,12 +56,18 @@ function Chat() {
   }, [messagesArray]);
 
   return (
-    <div className={classes.chatWrapper}>
-      <div className={classes.componentWrapper}>
-        <MessageList messagesArray={messagesArray} />
-        <MessageInput onSendMessage={onSendMessage} />
+    <div>
+      
+      <div className={classes.chatWrapper}>      
+        <div>
+          <h3 className={classes.h3}>name</h3>
+          <div className={classes.componentWrapper}>
+            <MessageList messagesArray={messagesArray} />
+            <MessageInput onSendMessage={onSendMessage} />
+          </div>
+        </div>
+        <FolderList chatsAray={chatsAray}></FolderList>
       </div>
-      <FolderList chatsAray={chatsAray}></FolderList>
     </div>
   );
 }
