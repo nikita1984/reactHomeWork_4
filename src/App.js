@@ -23,8 +23,12 @@ const App = () => {
           <Profile />
         </Route>
 
-        <Route path="/">
+        <Route exact path="/">
           <Home />
+        </Route>
+
+        <Route>
+          <h3>Page not found</h3>
         </Route>
       </Switch>
     </Router>

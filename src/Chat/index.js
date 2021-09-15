@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
+import FolderList from "./FolderList";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
   componentWrapper: {
     width: "600px",
-    height: "800px",
+    height: "80vh",
     border: "1px solid black",
     display: "flex",
     flexDirection: "column",
@@ -23,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Chat() {
   const [messagesArray, setMessagesArray] = useState([]);
+
+  const chatsAray = [
+    {id: "1", name: "First Chat"},
+    {id: "2", name: "Second Chat"},
+    {id: "3", name: "Third Chat"}
+  ];
 
   const classes = useStyles();
 
@@ -50,6 +57,7 @@ function Chat() {
         <MessageList messagesArray={messagesArray} />
         <MessageInput onSendMessage={onSendMessage} />
       </div>
+      <FolderList chatsAray={chatsAray}></FolderList>
     </div>
   );
 }

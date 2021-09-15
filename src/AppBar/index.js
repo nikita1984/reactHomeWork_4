@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const routes = [
   {
     pathTitle: "Home",
-    path: "/home",
+    path: "/",
   },
   { pathTitle: "Chat", path: "/chat" },
   { pathTitle: "Playground", path: "/playground" },
