@@ -29,12 +29,6 @@ const useStyles = makeStyles((theme) => ({
 function Chat() {
   const [messagesArray, setMessagesArray] = useState([]);
 
-  const chatsAray = [
-    {id: "1", name: "First Chat"},
-    {id: "2", name: "Second Chat"},
-    {id: "3", name: "Third Chat"}
-  ];
-
   const classes = useStyles();
 
   const onSendMessage = (messageText) => {
@@ -57,8 +51,7 @@ function Chat() {
 
   return (
     <div>
-      
-      <div className={classes.chatWrapper}>      
+        <div className={classes.chatWrapper}>      
         <div>
           <h3 className={classes.h3}>name</h3>
           <div className={classes.componentWrapper}>
@@ -66,7 +59,6 @@ function Chat() {
             <MessageInput onSendMessage={onSendMessage} />
           </div>
         </div>
-        <FolderList chatsAray={chatsAray}></FolderList>
       </div>
     </div>
   );
