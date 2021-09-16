@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
-import FolderList from "./FolderList";
+// import FolderList from "./FolderList";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

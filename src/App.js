@@ -6,6 +6,7 @@ import AppBar from "./AppBar";
 import Profile from "./Profile";
 
 const App = () => {
+
   return (
     <Router>
       <AppBar />
