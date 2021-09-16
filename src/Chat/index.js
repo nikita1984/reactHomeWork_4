@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ChatList() {
   let match = useRouteMatch();
+  // console.log(match);
 
   const chats = [
     {id: "001", name: "First chat", mesages: []},
@@ -59,7 +60,7 @@ function ChatList() {
 
       <Switch>
         <Route path={`${match.path}/:chatId`}>
-          <Chat />
+          <Chat chats={chatsArray}/>
         </Route>
         <Route path={match.path}>
           <h3>Выбери любой чат</h3>
@@ -69,7 +70,7 @@ function ChatList() {
   );
 }
 
-function Chat() {
+function Chat(props) {
   const { chatId } = useParams();
   const [messagesArray, setMessagesArray] = useState([]);
 
@@ -93,11 +94,22 @@ function Chat() {
   //   }
   // }, [messagesArray]);
 
+  const chatsArray = props.chats;
+
+  const getChat = () => {
+    for (let chat of chatsArray) {
+      if (chat.id === chatId){
+        return chat;
+      }    
+    };
+  };
+
+  const chat = getChat();
+
   return (<div>
       <div className={classes.chatWrapper}>
-        <h3>Requested chat ID: {chatId}</h3>      
         <div>
-          <h3 className={classes.h3}>name</h3>
+          <h3 className={classes.h3}>{chat.name}</h3>
           <div className={classes.componentWrapper}>
             <MessageList messagesArray={messagesArray} />
             <MessageInput onSendMessage={onSendMessage} />
