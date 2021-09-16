@@ -37,8 +37,8 @@ function ChatList() {
   let match = useRouteMatch();
 
   const [chatsArray, setChatsArray] = useState([
-    {id: "001", name: "First chat", mesages: []},
-    {id: "002", name: "Second chat", mesages: []},
+    {id: "001", name: "First chat", mesages: ["first", "chat"]},
+    {id: "002", name: "Second chat", mesages: ["second", "chat"]},
   ]);
 
   return (
@@ -106,7 +106,7 @@ function Chat(props) {
         <div>
           <h3 className={classes.h3}>{chat.name}</h3>
           <div className={classes.componentWrapper}>
-            <MessageList messagesArray={messagesArray} />
+            <MessageList messagesArray={chat.mesages} />
             <MessageInput onSendMessage={onSendMessage} />
           </div>
         </div>

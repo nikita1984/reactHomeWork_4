@@ -10,13 +10,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const MessageList = ({ messagesArray }) => {
+function MessageList (props) {
   const classes = useStyles();
 
   return (
     <div className={classes.messageList}>
-      {messagesArray.map((message, i) => (
-        <div key={i}>{message.messageText}</div>
+      {props.messagesArray.map((message, i) => (
+        <div key={i}>{message}</div>
       ))}
     </div>
   );
