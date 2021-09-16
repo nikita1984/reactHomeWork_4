@@ -1,12 +1,17 @@
 // import React from "react";
 import {
-  BrowserRouter as Router,
+  // BrowserRouter,
   Switch,
   Route,
   Link,
   useRouteMatch,
   useParams
 } from "react-router-dom";
+
+const chats = [
+  {id: "001", name: "First chat", mesages: []},
+  {id: "002", name: "Second chat", mesages: []},
+]; 
 
 function ChatList() {
   let match = useRouteMatch();
@@ -16,17 +21,16 @@ function ChatList() {
       <h2>Список доступных чатов</h2>
 
       <ul>
-        <li>
-          <Link to={`${match.url}/chat1`}>First chat</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/chat2`}>Second chat</Link>
-        </li>
+        {chats.map((chat) => (
+          <li>
+            <Link to={`${match.url}/${chat.id}`}>{chat.name}</Link>
+          </li>
+        ))}
       </ul>
 
       <Switch>
-        <Route path={`${match.path}/:topicId`}>
-          <Topic />
+        <Route path={`${match.path}/:chatId`}>
+          <Chat />
         </Route>
         <Route path={match.path}>
           <h3>Выбери чат</h3>
@@ -36,9 +40,9 @@ function ChatList() {
   );
 }
 
-function Topic() {
-  let { topicId } = useParams();
-  return <h3>Requested topic ID: {topicId}</h3>;
+function Chat() {
+  let { chatId } = useParams();
+  return <h3>Requested chat ID: {chatId}</h3>;
 }
 
 
