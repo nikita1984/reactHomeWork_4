@@ -33,18 +33,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 function ChatList() {
   let match = useRouteMatch();
-  // console.log(match);
 
-  const chats = [
+  const [chatsArray, setChatsArray] = useState([
     {id: "001", name: "First chat", mesages: []},
     {id: "002", name: "Second chat", mesages: []},
-  ]; 
-
-  const [chatsArray, setChatsArray] = useState(chats);
+  ]);
 
   return (
     <div>
