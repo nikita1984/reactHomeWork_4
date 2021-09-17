@@ -41,6 +41,16 @@ function ChatList() {
     {id: "002", name: "Second chat", mesages: ["second", "chat"]},
   ]);
 
+  const onSendMessage = (messageText, id) => {
+    const chats = chatsArray;
+    for (let chat of chats) {
+      if (chat.id === id){
+        chat.mesages.push(messageText);
+      };
+    };
+    setChatsArray(chats);
+  };
+
   return (
     <div>
       <h2>Список доступных чатов</h2>
@@ -55,7 +65,7 @@ function ChatList() {
 
       <Switch>
         <Route path={`${match.path}/:chatId`}>
-          <Chat chats={chatsArray}/>
+          <Chat onSendMessage={onSendMessage} chats={chatsArray}/>
         </Route>
         <Route path={match.path}>
           <h3>Выбери любой чат</h3>
@@ -67,19 +77,11 @@ function ChatList() {
 
 function Chat(props) {
   const { chatId } = useParams();
-  const [messagesArray, setMessagesArray] = useState([]);
+  // const [messagesArray, setMessagesArray] = useState([]);
 
   const classes = useStyles();
 
-  const onSendMessage = (messageText) => {
-    setMessagesArray((prev) => [
-      ...prev,
-      {
-        messageText,
-        author: "me",
-      },
-    ]);
-  };
+  
 
   // useEffect(() => {
   //   if (messagesArray.length > 0) {
@@ -107,7 +109,7 @@ function Chat(props) {
           <h3 className={classes.h3}>{chat.name}</h3>
           <div className={classes.componentWrapper}>
             <MessageList messagesArray={chat.mesages} />
-            <MessageInput onSendMessage={onSendMessage} />
+            <MessageInput id={chat.id} onSendMessage={props.onSendMessage} />
           </div>
         </div>
       </div>

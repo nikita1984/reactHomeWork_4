@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MessageInput = ({ onSendMessage }) => {
+function MessageInput (props) {
   const classes = useStyles();
   const [inputMessage, setInputMessage] = useState("");
 
   const sendAndRemoveInput = () => {
     const trimmedMessageText = inputMessage.trim();
     if (trimmedMessageText !== "") {
-      onSendMessage(trimmedMessageText);
+      props.onSendMessage(trimmedMessageText, props.id);
       setInputMessage("");
     }
   };
