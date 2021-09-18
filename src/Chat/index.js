@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
 import {
-  Redirect,
   Switch,
   Route,
   Link,
@@ -48,6 +47,9 @@ function ChatList() {
     setChatsArray(chats);
   };
 
+  const deleteChat = () => {console.log('delete')};
+  const createChat = () => {console.log('create')};
+
   return (
     <div>
       <h2>Список доступных чатов</h2>
@@ -58,12 +60,12 @@ function ChatList() {
             <li>
                 <Link to={`${match.url}/${chat.id}`}>{chat.name}</Link>
             </li>
-            <button>удалить</button>
+            <button onClick={deleteChat}>удалить</button>
           </div>
         ))}
       </ul>
 
-      <button>Новый чат</button>
+      <button onClick={createChat}>Новый чат</button>
 
       <Switch>
         <Route path={`${match.path}/:chatId`}>
