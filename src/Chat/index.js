@@ -54,11 +54,16 @@ function ChatList() {
 
       <ul>
         {chatsArray.map((chat) => (
-          <li>
-            <Link to={`${match.url}/${chat.id}`}>{chat.name}</Link>
-          </li>
+          <div>
+            <li>
+                <Link to={`${match.url}/${chat.id}`}>{chat.name}</Link>
+            </li>
+            <button>удалить</button>
+          </div>
         ))}
       </ul>
+
+      <button>Новый чат</button>
 
       <Switch>
         <Route path={`${match.path}/:chatId`}>
