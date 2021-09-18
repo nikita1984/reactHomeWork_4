@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
 import {
-  // BrowserRouter,
+  Redirect,
   Switch,
   Route,
   Link,
@@ -85,17 +85,22 @@ function Chat(props) {
   //   }
   // }, [messagesArray]);
 
-  // const chats = props.chats;
-
   const getChat = () => {
     for (let chat of props.chats) {
       if (chat.id === chatId){
         return chat;
-      }    
+      } 
     };
   };
 
   const chat = getChat();
+
+  if (!chat) {
+    return (<div>
+      <h3>Указанный чат не найден.</h3>
+      <h3>Выбери любой доступный чат</h3>
+      </div> );
+  }
 
   return (<div>
       <div className={classes.chatWrapper}>
