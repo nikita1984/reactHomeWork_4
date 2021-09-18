@@ -41,8 +41,6 @@ function ChatList() {
     {id: "002", name: "Second chat", mesages: []},
   ]);
 
-  
-
   const onSendMessage = (messageText, chat) => {
     const chats = chatsArray.slice();
     const index = chats.indexOf(chat);
