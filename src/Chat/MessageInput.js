@@ -30,7 +30,7 @@ function MessageInput (props) {
   const sendAndRemoveInput = () => {
     const trimmedMessageText = inputMessage.trim();
     if (trimmedMessageText !== "") {
-      props.onSendMessage(trimmedMessageText, props.id);
+      props.onSendMessage(trimmedMessageText, props.chat);
       setInputMessage("");
     }
   };

@@ -41,13 +41,11 @@ function ChatList() {
     {id: "002", name: "Second chat", mesages: ["second", "chat"]},
   ]);
 
-  const onSendMessage = (messageText, id) => {
-    const chats = chatsArray;
-    for (let chat of chats) {
-      if (chat.id === id){
-        chat.mesages.push(messageText);
-      };
-    };
+  const chats = chatsArray.slice();
+
+  const onSendMessage = (messageText, chat) => {
+    const index = chats.indexOf(chat);
+    chats[index].mesages.push(messageText);
     setChatsArray(chats);
   };
 
@@ -91,10 +89,10 @@ function Chat(props) {
   //   }
   // }, [messagesArray]);
 
-  const chatsArray = props.chats;
+  const chats = props.chats;
 
   const getChat = () => {
-    for (let chat of chatsArray) {
+    for (let chat of chats) {
       if (chat.id === chatId){
         return chat;
       }    
@@ -109,7 +107,7 @@ function Chat(props) {
           <h3 className={classes.h3}>{chat.name}</h3>
           <div className={classes.componentWrapper}>
             <MessageList messagesArray={chat.mesages} />
-            <MessageInput id={chat.id} onSendMessage={props.onSendMessage} />
+            <MessageInput chat={chat} onSendMessage={props.onSendMessage} />
           </div>
         </div>
       </div>
