@@ -37,13 +37,14 @@ function ChatList() {
   let match = useRouteMatch();
 
   const [chatsArray, setChatsArray] = useState([
-    {id: "001", name: "First chat", mesages: ["first", "chat"]},
-    {id: "002", name: "Second chat", mesages: ["second", "chat"]},
+    {id: "001", name: "First chat", mesages: []},
+    {id: "002", name: "Second chat", mesages: []},
   ]);
 
-  const chats = chatsArray.slice();
+  
 
   const onSendMessage = (messageText, chat) => {
+    const chats = chatsArray.slice();
     const index = chats.indexOf(chat);
     chats[index].mesages.push(messageText);
     setChatsArray(chats);
@@ -75,11 +76,8 @@ function ChatList() {
 
 function Chat(props) {
   const { chatId } = useParams();
-  // const [messagesArray, setMessagesArray] = useState([]);
 
   const classes = useStyles();
-
-  
 
   // useEffect(() => {
   //   if (messagesArray.length > 0) {
@@ -89,10 +87,10 @@ function Chat(props) {
   //   }
   // }, [messagesArray]);
 
-  const chats = props.chats;
+  // const chats = props.chats;
 
   const getChat = () => {
-    for (let chat of chats) {
+    for (let chat of props.chats) {
       if (chat.id === chatId){
         return chat;
       }    
@@ -114,6 +112,5 @@ function Chat(props) {
   </div>);
   ;
 }
-
 
 export default ChatList;
