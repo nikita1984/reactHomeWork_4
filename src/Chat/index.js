@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MessageList from "./MessageList";
-import MessageInput from "./MessageInput";
+import Chat from "./Chat";
 import {
   Switch,
   Route,
@@ -59,7 +58,7 @@ function ChatList() {
   const deleteChat = (event) => {
     const deletedChatID = event.target.dataset.id;
     const deletedChats = getChat(deletedChatID);
-    
+
     const chats = chatsArray.slice();
     const index = chats.indexOf(deletedChats);
     chats.splice(index, 1);
@@ -104,50 +103,6 @@ function ChatList() {
       </Switch>
     </div>
   );
-}
-
-function Chat(props) {
-  const { chatId } = useParams();
-
-  const classes = useStyles();
-
-  // useEffect(() => {
-  //   if (messagesArray.length > 0) {
-  //     setTimeout(() => {
-  //       console.log("Message was sent");
-  //     }, 1000);
-  //   }
-  // }, [messagesArray]);
-
-  const getChat = () => {
-    for (let chat of props.chats) {
-      if (chat.id === chatId){
-        return chat;
-      } 
-    };
-  };
-
-  const chat = getChat();
-
-  if (!chat) {
-    return (<div>
-      <h3>Указанный чат не найден.</h3>
-      <h3>Выбери любой доступный чат</h3>
-      </div> );
-  }
-
-  return (<div>
-      <div className={classes.chatWrapper}>
-        <div>
-          <h3 className={classes.h3}>{chat.name}</h3>
-          <div className={classes.componentWrapper}>
-            <MessageList messagesArray={chat.mesages} />
-            <MessageInput chat={chat} onSendMessage={props.onSendMessage} />
-          </div>
-        </div>
-      </div>
-  </div>);
-  ;
 }
 
 export default ChatList;
