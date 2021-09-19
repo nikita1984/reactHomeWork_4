@@ -48,7 +48,13 @@ function ChatList() {
   };
 
   const deleteChat = () => {console.log('delete')};
-  const createChat = () => {console.log('create')};
+
+  const createChat = () => {
+    const newChatID = Math.floor(Math.random() * 10 ** 3).toString();
+    const defaultChatName = 'New chat: ' + newChatID; 
+    const newChatName = prompt('Введите имя чата!', defaultChatName);
+    console.log({id: newChatID, name: newChatName, mesages: []});
+  };
 
   return (
     <div>
