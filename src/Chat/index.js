@@ -47,7 +47,10 @@ function ChatList() {
     setChatsArray(chats);
   };
 
-  const deleteChat = () => {console.log('delete')};
+  const deleteChat = (event) => {
+    const deleteChatID = event.target.dataset.id;
+    console.log(deleteChatID);
+  };
 
   const createChat = () => {
     const newChatID = Math.floor(Math.random() * 10 ** 3).toString();
@@ -70,7 +73,7 @@ function ChatList() {
             <li>
                 <Link to={`${match.url}/${chat.id}`}>{chat.name}</Link>
             </li>
-            <button onClick={deleteChat}>удалить</button>
+            <button data-id={chat.id} onClick={deleteChat}>удалить</button>
           </div>
         ))}
       </ul>
