@@ -1,38 +1,37 @@
 import React, { useEffect, useState } from "react";
 import Chat from "./Chat";
+import Button from "@material-ui/core/Button";
 import {
   Switch,
   Route,
   Link,
   useRouteMatch,
-  useParams
 } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  chatWrapper: {
-    height: "100%",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+  link: {
+    marginRight: "15px",
+    color: theme.palette.background.default,
+    textDecoration: "none",
   },
 
-  componentWrapper: {
-    width: "600px",
-    height: "80vh",
-    border: "1px solid black",
-    display: "flex",
-    flexDirection: "column",
+  activeLink: {
+    color: "red",
   },
 
-  h3: {
-    textAlign: "center",
+  appBar: {
+    marginBottom: "15px",
+  },
+
+  button: {
+    margin: "0px 10px",
   },
 }));
 
 function ChatList() {
   let match = useRouteMatch();
+  const classes = useStyles();
 
   const [chatsArray, setChatsArray] = useState([
     {id: "001", name: "First chat", mesages: []},
@@ -91,7 +90,16 @@ function ChatList() {
         ))}
       </ul>
 
-      <button onClick={createChat}>Новый чат</button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={createChat}
+        classes={{
+          root: classes.button,
+        }}
+      >
+        Новый чат
+      </Button>
 
       <Switch>
         <Route path={`${match.path}/:chatId`}>
