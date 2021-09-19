@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Chat from "./Chat";
 import Button from "@material-ui/core/Button";
 import {
@@ -8,14 +8,11 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-// import { findByLabelText } from "@testing-library/dom";
 
 const useStyles = makeStyles((theme) => ({
   link: {
-    // marginRight: "15px",
     color: theme.palette.primary.dark,
     textDecoration: "none",
-    // listStyleType: "none !important",
   },
 
   activeLink: {
@@ -30,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 
   deleteButton: {
     height: "5px",
-    width: "5px",
   },
 }));
 
@@ -69,8 +65,7 @@ function ChatList() {
     setChatsArray(chats);
   };
 
-  const createChat = () => {
-    const newChatID = Math.floor(Math.random() * 10 ** 3).toString();
+  const getNewChatList = (newChatID) => {
     const defaultChatName = 'New chat: ' + newChatID; 
     const newChatName = prompt('Введите имя чата!', defaultChatName);
     const newChat = {id: newChatID, name: newChatName, mesages: []};
@@ -78,6 +73,24 @@ function ChatList() {
     const chats = chatsArray.slice();
     chats.push(newChat);    
     setChatsArray(chats);
+  };
+  const isUnique = (newChatID) => {
+    const chats = chatsArray.slice();
+    for (let chat of chats) {
+      if (chat.id === newChatID){
+        return false;
+      } 
+    };
+    return true;
+  };
+  const createChat = () => {
+    const newChatID = Math.floor(Math.random() * 10 ** 3).toString();
+    if (isUnique) {
+      getNewChatList(newChatID);
+    } else {
+      const newChatID = Math.floor(Math.random() * 10 ** 4).toString();
+      getNewChatList(newChatID);
+    }
   };
 
   return (
@@ -99,7 +112,7 @@ function ChatList() {
               root: classes.deleteButton,
             }}
             >
-              X
+              delete
           </Button>
           </div>
         ))}

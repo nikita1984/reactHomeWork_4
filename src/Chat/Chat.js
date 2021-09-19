@@ -30,14 +30,6 @@ function Chat(props) {
   
     const classes = useStyles();
   
-    // useEffect(() => {
-    //   if (messagesArray.length > 0) {
-    //     setTimeout(() => {
-    //       console.log("Message was sent");
-    //     }, 1000);
-    //   }
-    // }, [messagesArray]);
-  
     const getChat = () => {
       for (let chat of props.chats) {
         if (chat.id === chatId){
