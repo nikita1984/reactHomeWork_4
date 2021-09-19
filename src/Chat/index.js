@@ -8,24 +8,29 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+// import { findByLabelText } from "@testing-library/dom";
 
 const useStyles = makeStyles((theme) => ({
   link: {
-    marginRight: "15px",
-    color: theme.palette.background.default,
+    // marginRight: "15px",
+    color: theme.palette.primary.dark,
     textDecoration: "none",
+    // listStyleType: "none !important",
   },
 
   activeLink: {
     color: "red",
   },
 
-  appBar: {
-    marginBottom: "15px",
+  chatList: {
+    display: "flex",
+    flexFlow: "column",
+    alignItems: "center",
   },
 
-  button: {
-    margin: "0px 10px",
+  deleteButton: {
+    height: "5px",
+    width: "5px",
   },
 }));
 
@@ -76,16 +81,26 @@ function ChatList() {
   };
 
   return (
-    <div>
+    <div className={classes.chatList}> 
       <h2>Список доступных чатов</h2>
 
       <ul>
         {chatsArray.map((chat) => (
           <div>
             <li>
-                <Link to={`${match.url}/${chat.id}`}>{chat.name}</Link>
+                <Link to={`${match.url}/${chat.id}`} className={classes.link}>{chat.name}</Link>
             </li>
-            <button data-id={chat.id} onClick={deleteChat}>удалить</button>
+            <Button
+            variant="contained"
+            color="primary"
+            data-id={chat.id}
+            onClick={deleteChat}
+            classes={{
+              root: classes.deleteButton,
+            }}
+            >
+              X
+          </Button>
           </div>
         ))}
       </ul>
