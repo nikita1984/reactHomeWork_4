@@ -47,9 +47,23 @@ function ChatList() {
     setChatsArray(chats);
   };
 
+  const getChat = (id) => {
+    const chats = chatsArray.slice();
+    for (let chat of chats) {
+      if (chat.id === id){
+        return chat;
+      } 
+    };
+  };
+
   const deleteChat = (event) => {
-    const deleteChatID = event.target.dataset.id;
-    console.log(deleteChatID);
+    const deletedChatID = event.target.dataset.id;
+    const deletedChats = getChat(deletedChatID);
+    
+    const chats = chatsArray.slice();
+    const index = chats.indexOf(deletedChats);
+    chats.splice(index, 1);
+    setChatsArray(chats);
   };
 
   const createChat = () => {
